@@ -2,7 +2,7 @@ App\Entity\User:
   user_1:
     email: 'user@example.com'
     roles: ['ROLE_USER']
-    password: 'password123'
+    password: 'MotDePasse!Vener2002'
 
   admin_1:
     email: 'admin@example.com'

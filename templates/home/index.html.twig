@@ -17,6 +17,13 @@
                     <li class="list-group-item">Aucune catégorie disponible.</li>
                 {% endfor %}
             </ul>
+
+            <!-- Bouton Admin -->
+            {% if is_granted('ROLE_ADMIN') %}
+                <div class="mt-3">
+                    <a href="{{ path('admin_dashboard') }}" class="btn btn-warning btn-block">Admin Dashboard</a>
+                </div>
+            {% endif %}
         </div>
 
         <!-- Main content -->

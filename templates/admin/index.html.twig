@@ -1,0 +1,168 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h1>Admin Dashboard</h1>
+
+    <div class="alert alert-info">
+        Bienvenue, {{ app.user.email }} ({{ app.user.roles|join(', ') }})
+    </div>
+
+    <!-- Liste des utilisateurs -->
+    <h2>Liste des utilisateurs</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.roles|join(', ') }}</td>
+                    <td>
+                        <a href="#" class="btn btn-primary btn-sm">Voir</a>
+                        <a href="#" class="btn btn-danger btn-sm" 
+                           onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')">Supprimer</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4" class="text-center">Aucun utilisateur trouvé.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Liste des topics -->
+    <h2>Liste des Topics</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Titre</th>
+                <th>Catégorie</th>
+                <th>Date de Publication</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for topic in topics %}
+                <tr>
+                    <td>{{ topic.id }}</td>
+                    <td>{{ topic.titre }}</td>
+                    <td>{{ topic.categorie.nom }}</td>
+                    <td>{{ topic.datePublication|date('d/m/Y H:i') }}</td>
+                    <td>
+                        <a href="#" class="btn btn-primary btn-sm">Voir</a>
+                        <a href="#" class="btn btn-danger btn-sm" 
+                           onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce topic ?')">Supprimer</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5" class="text-center">Aucun topic trouvé.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Liste des réponses -->
+    <h2>Liste des Réponses</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Contenu</th>
+                <th>Topic</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reponse in reponses %}
+                <tr>
+                    <td>{{ reponse.id }}</td>
+                    <td>{{ reponse.contenu }}</td>
+                    <td>{{ reponse.topic.titre }}</td>
+                    <td>{{ reponse.datePublication|date('d/m/Y H:i') }}</td>
+                    <td>
+                        <a href="#" class="btn btn-primary btn-sm">Voir</a>
+                        <a href="#" class="btn btn-danger btn-sm" 
+                           onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette réponse ?')">Supprimer</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5" class="text-center">Aucune réponse trouvée.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Liste des langues -->
+    <h2>Liste des Langues</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for langue in langues %}
+                <tr>
+                    <td>{{ langue.id }}</td>
+                    <td>{{ langue.nom }}</td>
+                    <td>
+                        <a href="#" class="btn btn-primary btn-sm">Voir</a>
+                        <a href="#" class="btn btn-danger btn-sm" 
+                           onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette langue ?')">Supprimer</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3" class="text-center">Aucune langue trouvée.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Liste des catégories -->
+    <h2>Liste des Catégories</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for categorie in categories %}
+                <tr>
+                    <td>{{ categorie.id }}</td>
+                    <td>{{ categorie.nom }}</td>
+                    <td>
+                        <a href="#" class="btn btn-primary btn-sm">Voir</a>
+                        <a href="#" class="btn btn-danger btn-sm" 
+                           onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ?')">Supprimer</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3" class="text-center">Aucune catégorie trouvée.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

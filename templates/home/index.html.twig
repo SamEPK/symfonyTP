@@ -24,6 +24,16 @@
             <h1>Bienvenue sur le Forum</h1>
             <p class="lead">Discutez, partagez et trouvez des réponses à vos questions.</p>
 
+            <!-- Affichage utilisateur -->
+            <div class="mb-4">
+                {% if app.user %}
+                    <p>Connecté en tant que : <strong>{{ app.user.email }}</strong></p>
+                    <a href="{{ path('app_logout') }}" class="btn btn-danger">Se déconnecter</a>
+                {% else %}
+                    <a href="{{ path('app_login') }}" class="btn btn-primary">Se connecter</a>
+                {% endif %}
+            </div>
+
             <h2 class="mt-4">Derniers Topics</h2>
             <div class="list-group">
                 {% for topic in latestTopics %}

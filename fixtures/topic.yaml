@@ -1,0 +1,7 @@
+App\Entity\Topic:
+  topic_{1..20}:
+    titre: <sentence(6)>
+    contenu: <paragraph(3)>
+    datePublication: <dateTimeBetween('-1 year', 'now')>
+    categorie: '@categorie_<numberBetween(1, 5)>' 
+    langue: '@langue_<numberBetween(1, 3)>'       

@@ -1,0 +1,5 @@
+App\Entity\Reponse:
+  reponse_{1..50}:
+    contenu: <sentence(10)>
+    datePublication: <dateTimeBetween('-1 year', 'now')>
+    topic: '@topic_<numberBetween(1, 20)>'

@@ -1,0 +1,4 @@
+App\Entity\Langue:
+  langue_{1..3}:
+    code: <randomElement(['fr', 'en', 'es'])>
+    nom: <randomElement(['Français', 'Anglais', 'Espagnol'])>

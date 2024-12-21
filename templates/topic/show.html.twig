@@ -1,34 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Topic{% endblock %}
+{% block title %}Détail du Topic{% endblock %}
 
 {% block body %}
-    <h1>Topic</h1>
+<div class="container mt-4">
+    <h1 class="mb-4 text-primary">Détail du Topic</h1>
 
-    <table class="table">
+    <table class="table table-bordered table-hover">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th scope="row" class="table-secondary">Id</th>
                 <td>{{ topic.id }}</td>
             </tr>
             <tr>
-                <th>Titre</th>
+                <th scope="row" class="table-secondary">Titre</th>
                 <td>{{ topic.titre }}</td>
             </tr>
             <tr>
-                <th>Contenu</th>
+                <th scope="row" class="table-secondary">Contenu</th>
                 <td>{{ topic.contenu }}</td>
             </tr>
             <tr>
-                <th>DatePublication</th>
-                <td>{{ topic.datePublication ? topic.datePublication|date('Y-m-d H:i:s') : '' }}</td>
+                <th scope="row" class="table-secondary">Date de Publication</th>
+                <td>{{ topic.datePublication ? topic.datePublication|date('d/m/Y H:i') : '' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_topic_index') }}">back to list</a>
+    <div class="d-flex justify-content-between mt-4">
+        <a href="{{ path('app_topic_index') }}" class="btn btn-outline-primary">
+            <i class="fas fa-arrow-left"></i> Retour à la liste
+        </a>
 
-    <a href="{{ path('app_topic_edit', {'id': topic.id}) }}">edit</a>
-
-    {{ include('topic/_delete_form.html.twig') }}
+        {% if is_granted('ROLE_ADMIN') %}
+        <div>
+            <a href="{{ path('app_topic_edit', {'id': topic.id}) }}" class="btn btn-warning">
+                <i class="fas fa-edit"></i> Modifier
+            </a>
+            {{ include('topic/_delete_form.html.twig', { 'button_label': 'Supprimer' }) }}
+        </div>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}

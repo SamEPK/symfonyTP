@@ -1,11 +1,58 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Topic{% endblock %}
+{% block title %}Créer un Nouveau Topic{% endblock %}
 
 {% block body %}
-    <h1>Create new Topic</h1>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Créer un Nouveau Topic</h4>
+                </div>
+                <div class="card-body">
+                    {{ form_start(form, {'attr': {'class': 'needs-validation'}}) }}
+                    
+                    <div class="mb-3">
+                        {{ form_label(form.titre, 'Titre', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.titre, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.titre) }}
+                    </div>
 
-    {{ include('topic/_form.html.twig') }}
+                    <div class="mb-3">
+                        {{ form_label(form.contenu, 'Contenu', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.contenu, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.contenu) }}
+                    </div>
 
-    <a href="{{ path('app_topic_index') }}">back to list</a>
+                    <div class="mb-3">
+                        {{ form_label(form.datePublication, 'Date publication', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.datePublication, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.datePublication) }}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form_label(form.categorie, 'Categorie', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.categorie, {'attr': {'class': 'form-select'}}) }}
+                        {{ form_errors(form.categorie) }}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form_label(form.langue, 'Langue', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.langue, {'attr': {'class': 'form-select'}}) }}
+                        {{ form_errors(form.langue) }}
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Enregistrer</button>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+            <div class="mt-3">
+                <a href="{{ path('app_topic_index') }}" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left"></i> Retour à la liste
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

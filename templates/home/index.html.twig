@@ -4,6 +4,14 @@
 
 {% block body %}
 <div class="container mt-4">
+    {% if is_granted('ROLE_BANNED') %}
+        <div class="alert alert-danger text-center">
+            <h3>Vous êtes banni et ne pouvez pas accéder au contenu du site.</h3>
+        </div>
+        <div class="text-center mt-4">
+            <a href="{{ path('app_logout') }}" class="btn btn-danger">Se déconnecter</a>
+        </div>
+    {% else %}
     <div class="row">
         <!-- Sidebar -->
         <div class="col-md-3">
@@ -61,5 +69,6 @@
             </div>
         </div>
     </div>
+    {% endif %}
 </div>
 {% endblock %}
